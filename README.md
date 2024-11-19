@@ -148,7 +148,7 @@ Versiona tu API para facilitar la compatibilidad y la evolución de la misma.
 Por ejemplo: **/api/v1/**users
 Esto permite lanzar nuevas versiones sin afectar las anteriores, facilitando la transición a nuevas funcionalidades y evitando interrupciones en el servicio.
 
-#### 5. Paginación, Filtrado y Ordenamiento
+#### 5.5. Paginación, Filtrado y Ordenamiento
   - Para listas grandes de recursos, es buena idea implementar paginación para reducir el peso de las respuestas. Puedes utilizar parámetros como **?page=1&limit=10**.
   - Permite también filtrar y ordenar resultados para hacer la API más flexible. Ejemplo: **?tipo='perro'&edad=4**.
 
