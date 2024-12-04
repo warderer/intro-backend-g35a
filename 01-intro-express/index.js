@@ -5,7 +5,7 @@ const express = require('express')
 const app = express()
 
 // #3 Opcional: definir un puerto
-const port = 3000
+const port = process.env.PORT || 3000
 
 // #4 Configurar express para indicarle que se use JSON
 app.use(express.json())
