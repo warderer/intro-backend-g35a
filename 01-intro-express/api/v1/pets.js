@@ -29,9 +29,9 @@ const petList = {
     ]
 }
     // Traer toda la lista de mascotas
-    router.get('/api/v1/pets', (req, res) => {
-        res.json(petList)
-    })
+    // router.get('/api/v1/pets', (req, res) => {
+    //     res.json(petList)
+    // })
 
     /* PARAMS */
     // Un param sirve para hacer una ruta dinámica. Por ejemplo, si queremos traer una mascota en específico.
@@ -44,6 +44,31 @@ const petList = {
             return res.status(404).json({ message: 'Pet not found' })
         }
         res.json(pet)
+    })
+
+    /* QUERYS */
+    // Son similares a los PARAMS, pero se suelen para filtrar o buscar información. Sobre todo cuando ocupamos mandar más de un parametro.
+    // Las querys son abiertas, no definimos cuantas ni cuales pueden ser. La responsabilidad del Backend es solo tomar las que querys que le interesen.
+    // Query: /api/v1/pets?age=3&type=dog
+
+    router.get('/api/v1/pets', (req, res) => {
+        // El objeto que contiene las query es: req.query
+        console.log(req.query)
+
+        const { age, type } = req.query
+
+        const filteredPets = petList.pets.filter(pet => {
+            if (age && type) {
+                return pet.age === parseInt(age) && pet.type === type
+            }
+            if (age) {
+                return pet.age === parseInt(age)
+            }
+            if (type) {
+                return pet.type === type
+            }
+        })
+        res.json(filteredPets)
     })
 
 module.exports = router
