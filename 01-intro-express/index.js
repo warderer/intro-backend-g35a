@@ -1,6 +1,8 @@
 // #1 Llamar al a biblioteca de express (importarla)
 const express = require('express')
 
+const petRoutes = require('./api/v1/pets')
+
 // #2 Crear una instancia de express (normalmente la llamamos app)
 const app = express()
 
@@ -14,6 +16,8 @@ app.use(express.json())
 app.get('/', (req, res) => {
   res.send('Hola DevF G35A')
 })
+
+app.use(petRoutes)
 
 // #6 Levantar el servidor (iniciarlo)
 app.listen(port, () => {
