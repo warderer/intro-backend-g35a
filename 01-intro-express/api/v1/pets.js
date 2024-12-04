@@ -33,4 +33,17 @@ const petList = {
         res.json(petList)
     })
 
+    /* PARAMS */
+    // Un param sirve para hacer una ruta dinámica. Por ejemplo, si queremos traer una mascota en específico.
+    // Params: /api/v1/pets/:petId  ->   /api/v1/pets/1
+    router.get('/api/v1/pets/:petId', (req, res) => {
+        console.log(req.params)
+        const petId = req.params.petId
+        const pet = petList.pets.find(pet => pet.id === parseInt(petId))
+        if (!pet) {
+            return res.status(404).json({ message: 'Pet not found' })
+        }
+        res.json(pet)
+    })
+
 module.exports = router
