@@ -12,7 +12,7 @@ app.use(express.json())
 
 // #5 Definir rutas del servidor
 app.get('/', (req, res) => {
-  res.send('Hola DevF')
+  res.send('Hola DevF G35A')
 })
 
 // #6 Levantar el servidor (iniciarlo)
