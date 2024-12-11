@@ -26,11 +26,19 @@ const findAllHomes = (req, res) => {
   })
 }
 
+const findOneHome = (req, res) => {
+  ModelHome.findOne(req.params.idHome).then(home => {
+    res.status(200).json(home)
+  }).catch(error => {
+    res.status(400).json({ error: error.message })
+  })
+}
 // UPDATE
 
 // DELETE
 
 module.exports = {
   createHome,
-  findAllHomes
+  findAllHomes,
+  findOneHome
 }
