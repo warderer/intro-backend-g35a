@@ -33,12 +33,38 @@ const findOneHome = (req, res) => {
     res.status(400).json({ error: error.message })
   })
 }
+
 // UPDATE
+const updateOneHome = (req, res) => {
+  ModelHome.update(req.params.idHome, req.body).then(home => {
+    res.status(200).json(home)
+  }).catch(error => {
+    res.status(400).json({ error: error.message })
+  })
+}
 
 // DELETE
+const softDeleteOneHome = (req, res) => {
+  ModelHome.softDelete(req.params.idHome).then(home => {
+    res.status(204).json()
+  }).catch(error => {
+    res.status(400).json({ error: error.message })
+  })
+}
+
+const destroyOneHome = (req, res) => {
+  ModelHome.destroy(req.params.idHome).then(home => {
+    res.status(204).json()
+  }).catch(error => {
+    res.status(400).json({ error: error.message })
+  })
+}
 
 module.exports = {
   createHome,
   findAllHomes,
-  findOneHome
+  findOneHome,
+  updateOneHome,
+  softDeleteOneHome,
+  destroyOneHome
 }

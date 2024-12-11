@@ -31,8 +31,35 @@ const findOne = (houseId) => {
     .where('active', true)
 }
 
+const update = (houseId, bodyToUpdate) => {
+  return knex
+    .update(bodyToUpdate) // ¿Que datos voy a actualizar?
+    .from('homes') // ¿De que tabla?
+    .where('house_id', houseId) // ¿A quién?
+    .returning('*') // ¿Qué quiero que me devuelva?
+}
+
+// El Softdelete, no borra realmente de la base de datos, solo cambia el estado de un registro a inactivo. (active: false)
+const softDelete = (houseId) => {
+  return knex
+    .update({ active: false }) // ¿Que datos voy a actualizar?
+    .from('homes') // ¿De que tabla?
+    .where('house_id', houseId) // ¿A quién?
+}
+
+// Borrar un registro de la base de datos
+const destroy = (houseId) => {
+  return knex
+    .delete()
+    .from('homes')
+    .where('house_id', houseId)
+}
+
 module.exports = {
   create,
   findAll,
-  findOne
+  findOne,
+  update,
+  softDelete,
+  destroy
 }
