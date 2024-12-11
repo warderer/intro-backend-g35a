@@ -16,6 +16,14 @@ const create = (bodyHome) => {
     .returning(['house_id', 'title', 'description', 'guests', 'address', 'rental_price', 'active', 'created_at', 'fk_user']) // Devuelve los campos que se insertaron.
 }
 
+const findAll = () => {
+  return knex
+    .select('*')
+    .from('homes')
+    .where('active', true)
+}
+
 module.exports = {
-  create
+  create,
+  findAll
 }
